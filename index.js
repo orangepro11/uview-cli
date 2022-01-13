@@ -13,11 +13,6 @@ v1.command('init <name>').action(async name => {
   await InitProject(name)
 })
 
-v1.command('reset').action(async () => {
-  await inquirer.prompt([])
-  await setCompressFile()
-})
-
 v1.command('build <name>').action(async name => {
   await inquirer.prompt([])
   await buildCompressFile(name);

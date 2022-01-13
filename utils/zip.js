@@ -3,16 +3,14 @@
 const fs = require('fs')
 const zip = require('compressing').zip
 
-const compressFile = async from => {
-  await zip.compressDir(`./${from}`, './project.zip', {
+const compressFile = async (from, to) => {
+  await zip.compressDir(from, to, {
     ignoreBase: false,
-  }) // 输出写死，就叫project.zip
+  })
 }
 
-const uncompressFile = async (name, to) => {
-  await zip.uncompress(`./${name}`, `./`)
-  // 重命名文件夹
-  fs.renameSync(`./project`, `./${to}`)
+const uncompressFile = async name => {
+  await zip.uncompress(name, `./`)
 }
 
 module.exports = {
