@@ -1,0 +1,24 @@
+{
+  "name": "uview-cli",
+  "version": "1.0.1",
+  "main": "index.js",
+  "bin": {
+    "uview-cli": "index.js"
+  },
+  "scripts": {
+    "dev": "node ./index.js"
+  },
+  "author": "不爱喝橙子汁",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "compressing": "^1.5.1",
+    "download-git-repo": "^1.1.0",
+    "handlebars": "^4.0.12",
+    "inquirer": "^6.2.0",
+    "log-symbols": "^2.2.0",
+    "ora": "^3.0.0",
+    "replace-in-file": "^3.4.2"
+  }
+}
