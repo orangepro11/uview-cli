@@ -3,7 +3,7 @@
 const program = require('commander')
 const inquirer = require('inquirer')
 
-const { InitProject, setCompressFile, buildCompressFile } = require('./cmd')
+const { InitProject, buildCompressFile } = require('./cmd')
 
 // 初始化命令行工具
 const v1 = program.version('1.0.0', '-v, --version')
