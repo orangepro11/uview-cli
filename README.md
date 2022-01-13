@@ -146,7 +146,7 @@ program.parse(process.argv)
 
 
 
-## 构建模板项目
+### 构建模板项目
 
 需要把模板文件放到templates/output文件夹下，然后执行
 
