@@ -6,7 +6,9 @@
     "uview-cli": "index.js"
   },
   "scripts": {
-    "dev": "node ./index.js"
+    "dev": "node ./index.js",
+    "build": "node ./index.js build",
+    "rebuild": "node ./index.js rebuild"
   },
   "author": "不爱喝橙子汁",
   "license": "MIT",
