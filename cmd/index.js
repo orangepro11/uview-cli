@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { uncompressFile, compressFile } = require('../utils/zip')
-const { readFileToBase64, readFileToString, saveStringToFile, deleteFile, saveBase64ToFile } = require('../utils/file')
+const { readFileToBase64, getAllSubDirs, saveStringToFile, deleteFile, saveBase64ToFile } = require('../utils/file')
 const fs = require('fs')
 const path = require('path')
 const { ShowLoading, PrintToConsole } = require('../utils/commad')
@@ -54,7 +54,23 @@ const buildCompressFile = async from => {
     // 删除压缩文件
     await deleteFile(path.resolve(toPath, `${from}.zip`))
     // 提示用户完成
-    spinner.succeed('构建成功')
+    spinner.succeed(`模板${from}构建成功`)
+  } catch (e) {
+    spinner.fail('构建失败')
+    PrintToConsole(e.message, 'error')
+  }
+}
+
+const buildAll = async () => {
+  const spinner = ShowLoading('正在构建中...')
+  try {
+    const allTemplates = await getAllSubDirs(path.resolve(__dirname, '../templates/input'))
+    await Promise.all(
+      allTemplates.map(async item => {
+        await buildCompressFile(item)
+      })
+    )
+    spinner.succeed(`构建成功，共${allTemplates.length}个模板`)
   } catch (e) {
     spinner.fail('构建失败')
     PrintToConsole(e.message, 'error')
@@ -64,4 +80,5 @@ const buildCompressFile = async from => {
 module.exports = {
   InitProject,
   buildCompressFile,
+  buildAll,
 }

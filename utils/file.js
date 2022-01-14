@@ -68,10 +68,25 @@ const deleteFile = filePath => {
   })
 }
 
+// 获取目录下的所有子文件夹
+const getAllSubDirs = dirPath => {
+  return new Promise((resolve, reject) => {
+    fs.readdir(dirPath, (err, files) => {
+      if (err) {
+        reject(err)
+      } else {
+        const dirs = files
+        resolve(dirs)
+      }
+    })
+  })
+}
+
 module.exports = {
   readFileToBase64,
   saveBase64ToFile,
   saveStringToFile,
   readFileToString,
   deleteFile,
+  getAllSubDirs,
 }
