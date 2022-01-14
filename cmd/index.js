@@ -63,6 +63,5 @@ const buildCompressFile = async (from) => {
 
 module.exports = {
   InitProject,
-  setCompressFile,
   buildCompressFile
 }
