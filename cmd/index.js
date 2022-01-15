@@ -64,6 +64,15 @@ const buildCompressFile = async from => {
 const buildAll = async () => {
   const spinner = ShowLoading('正在构建中...')
   try {
+    // 先删除output文件夹下的所有文件
+    const outputPath = path.resolve(__dirname, '../templates/output')
+    const files = await getAllSubDirs(outputPath)
+    await Promise.all(
+      files.map(async file => {
+        await deleteFile(path.resolve(outputPath, file))
+      })
+    )
+
     const allTemplates = await getAllSubDirs(path.resolve(__dirname, '../templates/input'))
     await Promise.all(
       allTemplates.map(async item => {
