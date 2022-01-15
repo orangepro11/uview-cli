@@ -17,7 +17,7 @@ v1.command('create <name>').action(async name => {
       choices: ['cli-uview2', 'hbx-uview2'],
     },
   ])
-  await InitProject(templateName)
+  await InitProject(name, templateName)
 })
 
 v1.command('build <name>').action(async name => {
