@@ -6,7 +6,7 @@ const inquirer = require('inquirer')
 const { InitProject, buildCompressFile, buildAll } = require('./cmd')
 
 // 初始化命令行工具
-const v1 = program.version('1.0.0', '-v, --version')
+const v1 = program.version('1.0.6', '-v, --version')
 
 v1.command('create <name>').action(async name => {
   const { templateName } = await inquirer.prompt([
