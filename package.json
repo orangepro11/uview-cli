@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "node ./index.js",
+    "create": "node ./index.js create",
     "build": "node ./index.js build",
     "rebuild": "node ./index.js rebuild"
   },
