@@ -2,6 +2,7 @@
 
 const program = require('commander')
 const inquirer = require('inquirer')
+const { TemplateList } = require('./constant')
 
 const { InitProject, buildCompressFile, buildAll } = require('./cmd')
 
@@ -9,15 +10,16 @@ const { InitProject, buildCompressFile, buildAll } = require('./cmd')
 const v1 = program.version('1.0.6', '-v, --version')
 
 v1.command('create <name>').action(async name => {
+  const choices = TemplateList.map(item => item.tips)
   const { templateName } = await inquirer.prompt([
     {
       type: 'list',
       name: 'templateName',
       message: '请选择模板',
-      choices: ['cli-uview2', 'hbx-uview2'],
+      choices,
     },
   ])
-  await InitProject(name, templateName)
+  await InitProject(name, TemplateList.find(item => item.tips === templateName).name)
 })
 
 v1.command('build <name>').action(async name => {
