@@ -3,6 +3,7 @@
 const logSymbols = require('log-symbols')
 const chalk = require('chalk')
 const ora = require('ora')
+const process = require('child_process')
 
 const PrintToConsole = (content, type = 'success') => {
   if (type == 'success') {
@@ -18,7 +19,19 @@ const ShowLoading = content => {
   return spinner
 }
 
+const Exec = cmd => {
+  return new Promise((resolve, reject) => {
+    process.exec(cmd, (err, stdout, stderr) => {
+      if (err) {
+        reject(stderr)
+      }
+      resolve(stdout)
+    })
+  })
+}
+
 module.exports = {
   PrintToConsole,
   ShowLoading,
+  Exec,
 }
