@@ -16,7 +16,23 @@ const TemplateList = [
   },
 ]
 
+const MirrorConfigList = [
+  {
+    cmd: '',
+    tips: '不需要为我处理',
+  },
+  {
+    cmd: `config set registry https://registry.npm.taobao.org`,
+    tips: '淘宝镜像',
+  },
+  {
+    cmd: `config set registry https://registry.npmjs.org`,
+    tips: '官方镜像',
+  },
+]
+
 module.exports = {
   TemplateList,
   TYPE,
+  MirrorConfigList,
 }

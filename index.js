@@ -2,7 +2,7 @@
 
 const program = require('commander')
 const inquirer = require('inquirer')
-const { TemplateList, TYPE } = require('./constant')
+const { TemplateList, TYPE, MirrorConfigList } = require('./constant')
 const fs = require('fs')
 const { PrintToConsole, Exec } = require('./utils/commad')
 const { InitProject, buildCompressFile, buildAll } = require('./cmd')
@@ -16,19 +16,37 @@ v1.command('create <name>').action(async name => {
     PrintToConsole('项目不是空目录，重新选择一个吧', 'error')
     process.exit(1)
   }
-  const choices = TemplateList.map(item => item.tips)
-  const { templateName } = await inquirer.prompt([
+  const { templateName, projectName, projectManager, mirror } = await inquirer.prompt([
     {
       type: 'list',
       name: 'templateName',
       message: '请选择模板',
-      choices,
+      choices: TemplateList.map(item => item.tips),
+    },
+    {
+      type: 'input',
+      name: 'projectName',
+      message: '请输入项目名称',
+      default: name,
+    },
+    {
+      type: 'list',
+      name: 'projectManager',
+      message: '请选择依赖管理工具',
+      choices: ['npm', 'yarn', 'pnpm'],
+    },
+    {
+      type: 'list',
+      name: 'mirror',
+      message: '请选择镜像',
+      choices: MirrorConfigList.map(item => item.tips),
     },
   ])
   const selected = TemplateList.find(item => item.tips === templateName)
-  await InitProject(name, selected.name)
-  if (selected.type == TYPE.CLI) {
-    InstallNodeModules(name, 'yarn')
+  const useMirror = MirrorConfigList.find(item => item.tips === mirror)
+  await InitProject(projectName, selected.name)
+  if (selected.type === TYPE.CLI) {
+    InstallNodeModules(name, projectManager, useMirror.cmd)
   }
 })
 
