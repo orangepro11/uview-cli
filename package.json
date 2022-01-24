@@ -1,6 +1,6 @@
 {
   "name": "uview-cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "index.js",
   "bin": {
     "uview-cli": "index.js"
