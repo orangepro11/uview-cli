@@ -7,7 +7,7 @@ const { TemplateList } = require('./constant')
 const { InitProject, buildCompressFile, buildAll } = require('./cmd')
 
 // 初始化命令行工具
-const v1 = program.version('1.0.7', '-v, --version')
+const v1 = program.version('1.0.8', '-v, --version')
 
 v1.command('create <name>').action(async name => {
   const choices = TemplateList.map(item => item.tips)
